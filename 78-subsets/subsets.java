@@ -1,17 +1,18 @@
 class Solution {
-    public void dfs(int nums[],int index,List<Integer> ans,List<List<Integer>> result){
-           if(index==nums.length){
-              result.add(new ArrayList<>(ans));
-              return;
-           }
-           ans.add(nums[index]);
-           dfs(nums,index+1,ans,result);
-           ans.remove(ans.size()-1);
-           dfs(nums,index+1,ans,result);
-    }
     public List<List<Integer>> subsets(int[] nums) {
-           List<List<Integer>> result=new ArrayList<>();
-           dfs(nums,0,new ArrayList<>(),result);
-           return result;
+        List<List<Integer>> result=new ArrayList<>();
+        Generate(0,nums,new ArrayList<>(),result);
+        return result;
     }
+    public void Generate(int index,int arr[],List<Integer> current,List<List<Integer>> result){
+        if(index==arr.length){
+            result.add(new ArrayList<>(current));
+            return;
+        }
+        current.add(arr[index]);
+        Generate(index+1,arr,current,result);
+        current.remove(current.size()-1);
+        Generate(index+1,arr,current,result);
+    }
+
 }
